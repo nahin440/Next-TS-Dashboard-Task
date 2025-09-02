@@ -21,25 +21,25 @@ const UserCard = ({ user }: UserCardProps) => {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return
-    
+
     const card = cardRef.current
     const rect = card.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
-    
+
     const centerX = rect.width / 2
     const centerY = rect.height / 2
-    
+
     const rotateY = (x - centerX) / 25
     const rotateX = (centerY - y) / 25
-    
+
     card.style.transform = `
       perspective(1000px) 
       rotateY(${rotateY}deg) 
       rotateX(${rotateX}deg)
       scale3d(1.02, 1.02, 1.02)
     `
-    
+
     // Parallax effect for the gradient
     const gradient = card.querySelector('.card-gradient') as HTMLElement
     if (gradient) {
@@ -55,9 +55,9 @@ const UserCard = ({ user }: UserCardProps) => {
   }
 
   return (
-    <div 
+    <div
       ref={cardRef}
-      className="bg-card border border-border rounded-xl shadow-lg overflow-hidden transition-all duration-500 ease-out hover-lift"
+      className="bg-card border border-border rounded-xl shadow-lg overflow-hidden  transition-all duration-500 ease-out hover-lift"
       onMouseEnter={() => setIsHovered(true)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -65,19 +65,18 @@ const UserCard = ({ user }: UserCardProps) => {
     >
       <div className="p-6 relative overflow-hidden">
         {/* Animated gradient background */}
-        <div 
+        <div
           className="card-gradient absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           style={{
             background: `radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%)`,
             backgroundSize: '200% 200%'
           }}
         ></div>
-        
+
         {/* Shine effect */}
-        <div className={`absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 transition-all duration-1000 ${
-          isHovered ? 'translate-x-full opacity-100' : '-translate-x-full opacity-0'
-        }`}></div>
-        
+        <div className={`absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 transition-all duration-1000 ${isHovered ? 'translate-x-full opacity-100' : '-translate-x-full opacity-0'
+          }`}></div>
+
         <div className="flex items-center mb-4 relative z-10">
           <div className="relative">
             <div className="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -95,7 +94,7 @@ const UserCard = ({ user }: UserCardProps) => {
             </p>
           </div>
         </div>
-        
+
         <div className="mt-4 relative z-10">
           <p className="text-sm text-muted-foreground flex items-center mb-2 transition-all duration-300 hover:text-card-foreground">
             <svg className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -110,13 +109,13 @@ const UserCard = ({ user }: UserCardProps) => {
             {user.website}
           </p>
         </div>
-        
-        <div className="mt-6 relative z-10">
+
+        <div className="mt-6 relative  z-10">
           <Link href={`/users/${user.id}`} className="block w-full group/btn">
-            <button className="w-full py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-medium transition-all duration-500 overflow-hidden relative hover:shadow-lg">
+            <button className="w-full py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-medium transition-all duration-500 overflow-hidden relative hover:shadow-lg cursor-pointer">
               {/* Button shine effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></span>
-              
+
               {/* Button text with transition */}
               <span className="relative flex items-center justify-center">
                 View Details
