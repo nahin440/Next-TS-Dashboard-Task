@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 const ThreeDElements = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [reducedMotion, setReducedMotion] = useState(false)
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number | undefined>(undefined) // Fixed: Added initial value
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -33,7 +33,7 @@ const ThreeDElements = () => {
         const mouseX = e.clientX / window.innerWidth - 0.5
         const mouseY = e.clientY / window.innerHeight - 0.5
         
-        elements.forEach((element, index) => {
+        elements.forEach((element) => { // Removed unused 'index' parameter
           // Calculate offset based on element position for individual movement
           const rect = element.getBoundingClientRect()
           const elementX = rect.left + rect.width / 2
@@ -60,12 +60,12 @@ const ThreeDElements = () => {
     }
 
     // Throttle the mousemove event
-    let throttleTimeout: NodeJS.Timeout
+    let throttleTimeout: NodeJS.Timeout | null = null // Fixed: Proper typing instead of 'any'
     const throttledMouseMove = (e: MouseEvent) => {
       if (!throttleTimeout) {
         throttleTimeout = setTimeout(() => {
           handleMouseMove(e)
-          throttleTimeout = null as any
+          throttleTimeout = null
         }, 50) // Run at most every 50ms
       }
     }
