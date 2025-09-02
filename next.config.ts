@@ -1,9 +1,8 @@
-// /** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-  // Remove any redirects or rewrites that might interfere
-}
+import type { NextConfig } from "next";
 
-module.exports = nextConfig
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+ 
+};
+
+export default nextConfig;
