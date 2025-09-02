@@ -5,6 +5,7 @@ import UserList from '@/components/UserList'
 import SearchBar from '@/components/SearchBar'
 import Pagination from '@/components/Pagination'
 import ThreeDElements from '@/components/3DElements'
+import ThemeToggle from '@/components/ThemeToggle'
 
 interface User {
   id: number
@@ -80,10 +81,15 @@ export default function Home() {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
-    <main className="min-h-screen p-4 md:p-8 relative overflow-hidden bg-gradient-to-br from-background to-muted/30">
+    <main className="min-h-screen p-4 md:p-8 relative overflow-hidden bg-gradient-to-br from-background to-muted/30 dark:from-gray-900 dark:to-gray-800/30">
       <ThreeDElements />
       
-      <div className="max-w-6xl mx-auto relative z-10">
+      {/* Theme Toggle Button */}
+      <div className="fixed top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
+      
+      <div className="max-w-6xl mx-auto relative z-10 pt-16">
         <div className="text-center mb-10 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
             User Dashboard

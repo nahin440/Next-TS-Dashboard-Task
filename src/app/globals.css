@@ -95,3 +95,31 @@ body {
 .transition-3d {
   transition: transform 0.5s ease;
 }
+
+
+
+/* Add to your existing globals.css */
+/* .dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --border: #404040;
+  --card: #171717;
+  --card-foreground: #ededed;
+} */
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --border: #404040;
+  --card: #171717;
+  --card-foreground: #ededed;
+}
+
+/* Ensure smooth transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
